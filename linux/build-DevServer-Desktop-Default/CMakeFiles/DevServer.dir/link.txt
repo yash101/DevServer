@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -pthread -fopenmp -Wall -g    CMakeFiles/DevServer.dir/main.cxx.o CMakeFiles/DevServer.dir/dlib/all/source.cpp.o  -o DevServer -rdynamic -lpthread 

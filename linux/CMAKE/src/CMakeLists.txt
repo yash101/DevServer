@@ -1,0 +1,7 @@
+project(DevServer)
+cmake_minimum_required(VERSION 2.8)
+aux_source_directory(. SRC_LIST)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -fopenmp -Wall")
+find_package(Threads)
+add_executable(${PROJECT_NAME} ${SRC_LIST} config.hxx globals.hxx load.hxx main.cxx preprocessor.hxx server.hxx userprgm.hxx filesystem.hxx devlib.hxx server_actions.hxx dlib/all/source.cpp)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})

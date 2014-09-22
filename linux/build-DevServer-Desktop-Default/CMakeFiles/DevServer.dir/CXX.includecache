@@ -8,6 +8,34 @@
 
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/config.hxx
 
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/devlib.hxx
+fstream
+-
+iostream
+-
+string
+-
+sstream
+-
+cstring
+-
+cmath
+-
+thread
+-
+mutex
+-
+vector
+-
+map
+-
+unordered_map
+-
+time.h
+-
+stdio.h
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/stdio.h
+
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/algs.h
 string
 -
@@ -1855,6 +1883,8 @@ dlib/threads.h
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/threads.h
 dlib/iosockstream.h
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/iosockstream.h
+devlib.hxx
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/devlib.hxx
 globals.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/globals.hxx
 filesystem.hxx

@@ -11,6 +11,8 @@
 #include <map>
 #include <unordered_map>
 #include <time.h>
+#include <iterator>
+#include <algorithm>
 #include "stdio.h"
 
 namespace dev
@@ -124,6 +126,7 @@ namespace dev
             str << input;
             return str.str();
         }
+
         std::string getTime()
         {
             std::stringstream str;
@@ -133,6 +136,241 @@ namespace dev
             time(&rawtime);
             timeinfo = localtime(&rawtime);
             str << asctime(timeinfo);
+            return str.str();
+        }
+
+        std::string encryptAndDecryptString(const std::string input, const char key)
+        {
+            std::string tmp = input;
+            if(input.length() != 0)
+            {
+                for(unsigned int i = 0; i < input.size(); i++)
+                {
+                    tmp[i] ^= key;
+                }
+            }
+            return tmp;
+        }
+
+        std::vector<std::string> encryptAndDecryptString(const std::vector<std::string> input, const char key)
+        {
+            std::vector<std::string> out;
+            for(unsigned int i = 0; i < input.size(); i++)
+            {
+                out.push_back(encryptAndDecryptString(input[i], key));
+            }
+            return out;
+        }
+
+        std::string swapCertainCharacters(std::string string, char search_char, char replace_char)
+        {
+            std::stringstream stringstream;
+            for(unsigned int i = 0; i < string.size(); i++)
+            {
+                if(string[i] == search_char)
+                {
+                    stringstream << replace_char;
+                }
+                else
+                {
+                    stringstream << string[i];
+                }
+            }
+
+            return stringstream.str();
+        }
+
+        std::string swapCertainCharactersEndl(std::string string)
+        {
+            std::stringstream stringstream;
+            for(unsigned int i = 0; i < string.size(); i++)
+            {
+                if(string[i] == ' ')
+                {
+                    stringstream << std::endl;
+                }
+                else
+                {
+                    stringstream << string[i];
+                }
+            }
+
+            return stringstream.str();
+        }
+
+        std::string swapCharacterWithString(std::string string, char search_char, std::string replace_string)
+        {
+            std::stringstream stringstream;
+            for(unsigned int i = 0; i < string.size(); i++)
+            {
+                if(string[i] == search_char)
+                {
+                    stringstream << replace_string;
+                }
+                else
+                {
+                    stringstream << string[i];
+                }
+            }
+            return stringstream.str();
+        }
+
+        std::vector<std::string> swapCharacterWithString(std::vector<std::string> input, char search_char, std::string replace_string)
+        {
+            std::vector<std::string> out;
+            for(unsigned int i = 0; i < input.size(); i++)
+            {
+                out.push_back(swapCharacterWithString(input[i], search_char, replace_string));
+            }
+            return out;
+        }
+
+        std::string swapCertainCharactersMulti(std::string string, std::string search_string, std::string replace_string)
+        {
+            if(search_string.size() != replace_string.size())
+            {
+                std::cerr << "IN swapCertainCharactersMulti(), SEARCH_STRING AND REPLACE_STRING HAVE DIFFERENT VALUES" << std::endl;
+            }
+
+            std::string out = string;
+
+            for(unsigned int i = 0; i < search_string.size(); i++)
+            {
+                out = swapCertainCharacters(out, search_string[i], replace_string[i]);
+            }
+            return out;
+        }
+
+        std::vector<std::string> swapCertainCharacters(std::vector<std::string> strings, char search_char, char replace_char)
+        {
+            std::vector<std::string> strings_out;
+            for(unsigned int i = 0; i < strings.size(); i++)
+            {
+                strings_out.push_back(swapCertainCharacters(strings[i], search_char, replace_char));
+            }
+
+            return strings_out;
+        }
+
+        std::vector<std::string> swapCertainCharactersMulti(std::vector<std::string> strings, std::string search_string, std::string replace_string)
+        {
+            std::vector<std::string> strings_out;
+            for(unsigned int i = 0; i < strings.size(); i++)
+            {
+                strings_out.push_back(swapCertainCharactersMulti(strings[i], search_string, replace_string));
+            }
+
+            return strings_out;
+        }
+
+        std::vector<char> stringToCharVector(std::string string)
+        {
+            std::vector<char> outputCharArray;
+            for(unsigned int i = 0; i < string.size(); i++)
+            {
+                outputCharArray.push_back(string[i]);
+            }
+            return outputCharArray;
+        }
+
+        std::string charVectorToString(std::vector<char> charVector)
+        {
+            std::stringstream stringstream;
+            for(unsigned int i = 0; i < charVector.size(); i++)
+            {
+                stringstream << charVector[i];
+            }
+            return stringstream.str();
+        }
+
+        std::string reverseString(std::string input)
+        {
+            std::stringstream stringstream;
+            copy(input.rbegin(), input.rend(), std::ostream_iterator<char>(stringstream));
+            return stringstream.str();
+        }
+
+        std::string trimString(std::string input)
+        {
+            std::stringstream stringstream;
+            bool check = true;
+            for(unsigned int i = 0; i < input.length(); i++)
+            {
+                if(check)
+                {
+                    if(!isspace(input[i]))
+                    {
+                        check = false;
+                    }
+                    else
+                    {
+                        check = true;
+                    }
+                }
+                if(!check)
+                {
+                    stringstream << input[i];
+                }
+            }
+            std::string newString = reverseString(stringstream.str());
+            check = true;
+            std::stringstream stringstream2;
+            for(unsigned int i = 0; i < newString.length(); i++)
+            {
+                if(check)
+                {
+                    if(!isspace(newString[i]))
+                    {
+                        check = false;
+                    }
+                    else
+                    {
+                        check = true;
+                    }
+                }
+                if(!check)
+                {
+                    stringstream2 << newString[i];
+                }
+            }
+            return reverseString(stringstream2.str());
+        }
+
+#ifndef READ_LENGTH
+#define READ_LENGTH 65535
+#endif
+
+        std::string cinGetLineWithSpaces()
+        {
+            std::stringstream out;
+            char characterArrayBuffer[READ_LENGTH];
+            for(unsigned int i = 0; i < READ_LENGTH; i++)
+            {
+                characterArrayBuffer[i] = ' ';
+            }
+
+            std::cin.getline(characterArrayBuffer, READ_LENGTH);
+
+            for(unsigned int i = 0; i < READ_LENGTH; i++)
+            {
+                out << characterArrayBuffer[i];
+            }
+
+            return dev::str::trimString(out.str());
+        }
+
+        std::string formatMemorySize2(unsigned long long input)
+        {
+            std::string units[] = {"B", "KiB", "MiB", "GiB", "EiB"};
+            double number = input;
+            unsigned int i = 0;
+            while(number > 1024)
+            {
+                i++;
+                number /= 1024;
+            }
+            std::stringstream str;
+            str << number << " " << units[i];
             return str.str();
         }
     }

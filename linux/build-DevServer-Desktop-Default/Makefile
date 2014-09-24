@@ -141,7 +141,6 @@ main.o: main.cxx.o
 # target to build an object file
 main.cxx.o:
 	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.o
-	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.o
 .PHONY : main.cxx.o
 
 main.i: main.cxx.i
@@ -150,7 +149,6 @@ main.i: main.cxx.i
 # target to preprocess a source file
 main.cxx.i:
 	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.i
-	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.i
 .PHONY : main.cxx.i
 
 main.s: main.cxx.s
@@ -158,7 +156,6 @@ main.s: main.cxx.s
 
 # target to generate assembly for a file
 main.cxx.s:
-	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.s
 	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.s
 .PHONY : main.cxx.s
 

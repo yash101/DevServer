@@ -1,6 +1,6 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/DevServer.dir/main.cxx.o"
   "CMakeFiles/DevServer.dir/dlib/all/source.cpp.o"
+  "CMakeFiles/DevServer.dir/main.cxx.o"
   "DevServer.pdb"
   "DevServer"
 )

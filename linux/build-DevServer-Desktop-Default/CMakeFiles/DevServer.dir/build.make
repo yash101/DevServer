@@ -49,32 +49,9 @@ include CMakeFiles/DevServer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DevServer.dir/flags.make
 
-CMakeFiles/DevServer.dir/main.cxx.o: CMakeFiles/DevServer.dir/flags.make
-CMakeFiles/DevServer.dir/main.cxx.o: /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx
-	$(CMAKE_COMMAND) -E cmake_progress_report /media/storage/programming/yash101/repos/DevTech/devserver/linux/build-DevServer-Desktop-Default/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/DevServer.dir/main.cxx.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DevServer.dir/main.cxx.o -c /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx
-
-CMakeFiles/DevServer.dir/main.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DevServer.dir/main.cxx.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx > CMakeFiles/DevServer.dir/main.cxx.i
-
-CMakeFiles/DevServer.dir/main.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DevServer.dir/main.cxx.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx -o CMakeFiles/DevServer.dir/main.cxx.s
-
-CMakeFiles/DevServer.dir/main.cxx.o.requires:
-.PHONY : CMakeFiles/DevServer.dir/main.cxx.o.requires
-
-CMakeFiles/DevServer.dir/main.cxx.o.provides: CMakeFiles/DevServer.dir/main.cxx.o.requires
-	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.o.provides.build
-.PHONY : CMakeFiles/DevServer.dir/main.cxx.o.provides
-
-CMakeFiles/DevServer.dir/main.cxx.o.provides.build: CMakeFiles/DevServer.dir/main.cxx.o
-
 CMakeFiles/DevServer.dir/dlib/all/source.cpp.o: CMakeFiles/DevServer.dir/flags.make
 CMakeFiles/DevServer.dir/dlib/all/source.cpp.o: /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/all/source.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /media/storage/programming/yash101/repos/DevTech/devserver/linux/build-DevServer-Desktop-Default/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /media/storage/programming/yash101/repos/DevTech/devserver/linux/build-DevServer-Desktop-Default/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/DevServer.dir/dlib/all/source.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DevServer.dir/dlib/all/source.cpp.o -c /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/all/source.cpp
 
@@ -95,16 +72,39 @@ CMakeFiles/DevServer.dir/dlib/all/source.cpp.o.provides: CMakeFiles/DevServer.di
 
 CMakeFiles/DevServer.dir/dlib/all/source.cpp.o.provides.build: CMakeFiles/DevServer.dir/dlib/all/source.cpp.o
 
+CMakeFiles/DevServer.dir/main.cxx.o: CMakeFiles/DevServer.dir/flags.make
+CMakeFiles/DevServer.dir/main.cxx.o: /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx
+	$(CMAKE_COMMAND) -E cmake_progress_report /media/storage/programming/yash101/repos/DevTech/devserver/linux/build-DevServer-Desktop-Default/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/DevServer.dir/main.cxx.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DevServer.dir/main.cxx.o -c /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx
+
+CMakeFiles/DevServer.dir/main.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DevServer.dir/main.cxx.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx > CMakeFiles/DevServer.dir/main.cxx.i
+
+CMakeFiles/DevServer.dir/main.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DevServer.dir/main.cxx.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/main.cxx -o CMakeFiles/DevServer.dir/main.cxx.s
+
+CMakeFiles/DevServer.dir/main.cxx.o.requires:
+.PHONY : CMakeFiles/DevServer.dir/main.cxx.o.requires
+
+CMakeFiles/DevServer.dir/main.cxx.o.provides: CMakeFiles/DevServer.dir/main.cxx.o.requires
+	$(MAKE) -f CMakeFiles/DevServer.dir/build.make CMakeFiles/DevServer.dir/main.cxx.o.provides.build
+.PHONY : CMakeFiles/DevServer.dir/main.cxx.o.provides
+
+CMakeFiles/DevServer.dir/main.cxx.o.provides.build: CMakeFiles/DevServer.dir/main.cxx.o
+
 # Object files for target DevServer
 DevServer_OBJECTS = \
-"CMakeFiles/DevServer.dir/main.cxx.o" \
-"CMakeFiles/DevServer.dir/dlib/all/source.cpp.o"
+"CMakeFiles/DevServer.dir/dlib/all/source.cpp.o" \
+"CMakeFiles/DevServer.dir/main.cxx.o"
 
 # External object files for target DevServer
 DevServer_EXTERNAL_OBJECTS =
 
-DevServer: CMakeFiles/DevServer.dir/main.cxx.o
 DevServer: CMakeFiles/DevServer.dir/dlib/all/source.cpp.o
+DevServer: CMakeFiles/DevServer.dir/main.cxx.o
 DevServer: CMakeFiles/DevServer.dir/build.make
 DevServer: CMakeFiles/DevServer.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable DevServer"
@@ -114,8 +114,8 @@ DevServer: CMakeFiles/DevServer.dir/link.txt
 CMakeFiles/DevServer.dir/build: DevServer
 .PHONY : CMakeFiles/DevServer.dir/build
 
-CMakeFiles/DevServer.dir/requires: CMakeFiles/DevServer.dir/main.cxx.o.requires
 CMakeFiles/DevServer.dir/requires: CMakeFiles/DevServer.dir/dlib/all/source.cpp.o.requires
+CMakeFiles/DevServer.dir/requires: CMakeFiles/DevServer.dir/main.cxx.o.requires
 .PHONY : CMakeFiles/DevServer.dir/requires
 
 CMakeFiles/DevServer.dir/clean:

@@ -2,6 +2,24 @@
 #include "preprocessor.hxx"
 #include "server_actions.hxx"
 #include "load.hxx"
+
+//Server API tutorial:
+//All server code is under the namespace, srv.
+//In this program though, we have a certain server object that we are to use.
+//This is because the program has to play with the server too!
+//To use the server in your code, use the one under the namespace glob.
+//This is the preconfigured server.
+//To use it within userprgm.hxx:
+//The API is already set up!
+//To put data into the table, use the command, glob::srv.put(std::string key, std::string value).
+//To get a C++ Basic String (std::string) of the value associated with a key,
+//use glob::srv.get(std::string key). To get an std::unordered_map of the key/value
+//pairs, use the glob::srv.getTable() function.
+//Enjoy! That's the basics!
+//
+//
+//
+//===============[CODE START]==================
 namespace srv
 {
     //This generates the monitor table we see on the web interface!
@@ -73,17 +91,17 @@ namespace srv
 
             if(!strcmp(incoming.path.c_str(), "/"))
             {
-                return fs::ramfs::filesystem.read_file("input.html");
+                return fs::ramfs::filesystem.read_file_autocache(homepage);
             }
 
             if(!strcmp(incoming.path.c_str(), "/monitor_frm"))
             {
-                return fs::ramfs::filesystem.read_file("monitor.htx");
+                return fs::ramfs::filesystem.read_file_autocache(monitor_form);
             }
 
             if(!strcmp(incoming.path.c_str(), "/inject_frm"))
             {
-                return fs::ramfs::filesystem.read_file("inject.htx");
+                return fs::ramfs::filesystem.read_file_autocache(inject_form);
             }
 
             if(!strcmp(incoming.path.c_str(), "/ref"))
@@ -153,6 +171,29 @@ namespace srv
             //Unlock the mutex so we do not have our server freezing!
             mtx.unlock();
             //Return the serve data!
+            return x;
+        }
+
+        void put(std::string key, std::string value)
+        {
+            mtx.lock();
+            database[key] = value;
+            mtx.unlock();
+        }
+
+        std::string get(std::string key)
+        {
+            mtx.lock();
+            std::string x = database[key];
+            mtx.unlock();
+            return x;
+        }
+
+        std::unordered_map<std::string, std::string> getTable()
+        {
+            mtx.lock();
+            std::unordered_map<std::string, std::string> x = database;
+            mtx.unlock();
             return x;
         }
     };

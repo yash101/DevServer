@@ -44,6 +44,21 @@ namespace fs
         }
     }
 
+    void write_file(std::string file_location, std::string data)
+    {
+        std::ofstream fout(file_location.c_str());
+        if(fout.is_open())
+        {
+            fout << data;
+        }
+    }
+
+    void write_file_async(std::string file_location, std::string data)
+    {
+        std::thread x(write_file, file_location, data);
+        x.detach();
+    }
+
     namespace ramfs
     {
         //I like RAMCaches. They are nice and zippy. That's what this is for! :D
@@ -93,6 +108,7 @@ namespace fs
             //This function checks to see if a file exists in the RAMCache. If is does not exist, it will read the
             std::string read_file_autocache(std::string file_location)
             {
+#ifndef DISABLE_CACHE
                 //Check if the file is in the RAMCache
                 if(stat_map(file_location))
                 {
@@ -112,6 +128,9 @@ namespace fs
                     //Return the file from the RAMCache
                     return map[file_location];
                 }
+#else
+                return fs::read_file(file_location);
+#endif
             }
 
             //This function reads a file from the buffer
@@ -165,6 +184,31 @@ namespace fs
 #ifdef DETAILED_DEBUG
                     std::cout << "Loaded " << file_locations[i] << " from the disk!" << std::endl;
 #endif
+                }
+            }
+
+            //This function will push the file with the specified location to the hard disk!
+            //Note that this is a threaded function! :D. It uses the write_file_async to
+            //asynchronously write the data!
+            bool push_file(std::string file_location)
+            {
+                if(stat_file(file_location))
+                {
+#ifdef DETAILED_DEBUG
+                    std::cout << "Pushing " << file_location << " to the hard disk...";
+#endif
+                    write_file_async(file_location, map[file_location]);
+#ifdef DETAILED_DEBUG
+                    std::cout << "Success!" << std::endl;
+#endif
+                    return true;
+                }
+                else
+                {
+#ifdef DETAILED_DEBUG
+                    std::cout << "Failed to push: " << file_location << " to the hard disk!" << std::endl << "  File does not exist in the cache!" << std::endl;
+#endif
+                    return false;
                 }
             }
         };

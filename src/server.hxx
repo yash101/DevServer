@@ -2,6 +2,25 @@
 #include "preprocessor.hxx"
 #include "server_actions.hxx"
 #include "load.hxx"
+
+//Server API tutorial:
+//All server code is under the namespace, srv.
+//In this program though, we have a certain server object that we are to use.
+//This is because the program has to play with the server too!
+//To use the server in your code, use the one under the namespace glob.
+//This is the preconfigured server.
+//To use it within userprgm.hxx:
+//The API is already set up!
+//To put data into the table, use the command, glob::srv.put(std::string key, std::string value).
+//To get a C++ Basic String (std::string) of the value associated with a key,
+//use glob::srv.get(std::string key). To get an std::unordered_map of the key/value
+//pairs, use the glob::srv.getTable() function.
+//Enjoy! That's the basics!
+//
+//
+//
+//===============[CODE START]==================
+
 namespace srv
 {
     //This generates the monitor table we see on the web interface!
@@ -29,10 +48,14 @@ namespace srv
     private:
         //This is the map that holds all the data!
         std::unordered_map<std::string, std::string> database;
+
         //We will use this Mutex to lock the resources. This will prevent all sorts of corruptions, segfaults and much more!
-        std::mutex mtx;
+        //We will use a timed mutex to prevent major server failures. If DLib crashes a thread, the mutex will stay locked
+        //so the server will freeze and build up threads! Not what we want! We can set a timeout here!
+        std::timed_mutex mtx;
+
         //This is the function that processes the request!
-        const std::string process_request(const dlib::incoming_things& incoming)
+        inline const std::string process_request(const dlib::incoming_things& incoming, dlib::outgoing_things& outgoing)
         {
             //This is where I send a random number and hex string to the databaase! This is just for demonstration purposes
             #ifdef DEBUG_RNG
@@ -59,6 +82,24 @@ namespace srv
                 }
             }
 
+            if(!strcmp(incoming.path.c_str(), "/put_wf_new"))
+            {
+                std::string key = incoming.queries["key"];
+                std::string data = incoming.queries["data"];
+                if(key.size() != 0 && data.size() != 0)
+                {
+                    #ifdef DETAILED_DEBUG
+                    std::cout << "Key/Value Pair [" << key << ", " << data << "] injected!" << std::endl;
+                    #endif
+                    database[key] = data;
+                    return "Add Successful!";
+                }
+                else
+                {
+                    return "Add Failure! Perhaps the form is incomplete";
+                }
+            }
+
             //check for the get command
             if(!strcmp(incoming.path.c_str(), "/get"))
             {
@@ -71,19 +112,10 @@ namespace srv
                 return srv::montbl(database);
             }
 
-            if(!strcmp(incoming.path.c_str(), "/"))
+            //Check for Heartbeat
+            if(!strcmp(incoming.path.c_str(), "/heartbeat"))
             {
-                return fs::ramfs::filesystem.read_file("input.html");
-            }
-
-            if(!strcmp(incoming.path.c_str(), "/monitor_frm"))
-            {
-                return fs::ramfs::filesystem.read_file("monitor.htx");
-            }
-
-            if(!strcmp(incoming.path.c_str(), "/inject_frm"))
-            {
-                return fs::ramfs::filesystem.read_file("inject.htx");
+                return "";
             }
 
             if(!strcmp(incoming.path.c_str(), "/ref"))
@@ -125,8 +157,55 @@ namespace srv
             }
 #endif
 
+            //FOR THE NEW WEB INTERFACE
+            if(!strcmp(incoming.path.c_str(), "/"))
+            {
+                return fs::ramfs::filesystem.read_file_autocache(homepage);
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/css"))
+            {
+                outgoing.headers["Content-type"] = "text/css";
+                return fs::ramfs::filesystem.read_file_autocache(css_file);
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/js"))
+            {
+                outgoing.headers["Content-type"] = "text/javascript";
+                return fs::ramfs::filesystem.read_file_autocache(js_file);
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/inet"))
+            {
+                outgoing.headers["Content-type"] = "image/png";
+                return fs::ramfs::filesystem.read_file_autocache(inet_png);
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/server"))
+            {
+                outgoing.headers["Content-type"] = "image/png";
+                return fs::ramfs::filesystem.read_file_autocache(net_png);
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/inet_check"))
+            {
+                return "Y";
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/inject_frm"))
+            {
+                return fs::ramfs::filesystem.read_file_autocache(inject_form);
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/monitor_frm"))
+            {
+                return fs::ramfs::filesystem.read_file_autocache(monitor_form);
+            }
+
             //If nothing is left to do, error handler!
-            return fs::ramfs::filesystem.read_file("input.html");
+            outgoing.http_return = 404;
+            //return fs::ramfs::filesystem.read_file("input.html");
+            return "";
         }
 
     public:
@@ -147,36 +226,56 @@ namespace srv
 #endif
             //Lock the Mutex. In the previous version, all the problems were happening because the mutexes weren't locking/unlocking properly.
             //This solves that problem by putting the mutexes in a specific place where they are much more serviciable!
-            mtx.lock();
+            mtx.try_lock_for(std::chrono::milliseconds(SERVER_MUTEX_TIMEOUT));
             //Process the request
-            std::string x = process_request(incoming);
+            std::string x = process_request(incoming, outgoing);
             //Unlock the mutex so we do not have our server freezing!
             mtx.unlock();
+#ifdef DETAILED_DEBUG
+#ifdef DEBUG_WEBINF
+            //Display some output info
+            std::cout << "Content Type: " << outgoing.headers["Content-type"] << std::endl;
+            std::cout << "Return Code: " << outgoing.http_return << std::endl;
+#endif
+#endif
             //Return the serve data!
-            return x;
+            return x + " ";
         }
 
+        //This function allows you to put a value into the table without using the network. This yields a much lower latency!
         void put(std::string key, std::string value)
         {
-            mtx.lock();
+            //Lock the resources
+            mtx.try_lock_for(std::chrono::milliseconds(SERVER_MUTEX_TIMEOUT));
+            //Assign the value to the key in the map
             database[key] = value;
+            //Unlock the resources
             mtx.unlock();
         }
 
+        //Just like above. This function, however, gets an assigned value
         std::string get(std::string key)
         {
-            mtx.lock();
+            mtx.try_lock_for(std::chrono::milliseconds(SERVER_MUTEX_TIMEOUT));
             std::string x = database[key];
             mtx.unlock();
             return x;
         }
 
+        //This sends a copy of the entire table!
         std::unordered_map<std::string, std::string> getTable()
         {
-            mtx.lock();
+            mtx.try_lock_for(std::chrono::milliseconds(SERVER_MUTEX_TIMEOUT));
             std::unordered_map<std::string, std::string> x = database;
             mtx.unlock();
             return x;
+        }
+
+        void clearTable()
+        {
+            mtx.try_lock_for(std::chrono::milliseconds(SERVER_MUTEX_TIMEOUT));
+            database.clear();
+            mtx.unlock();
         }
     };
 }

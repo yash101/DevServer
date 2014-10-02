@@ -45,13 +45,13 @@
 
 //==============================[DO NOT COMMENT OUT]==============================
 //File Variables! PLEASE ADD TO FILECACHE.DAT FOR MAX PERFORMANCE!
-#define homepage "input.html"
-#define monitor_form "monitor.htx"
-#define inject_form "inject.htx"
-#define css_file "style.css"
-#define js_file "javascript.js"
-#define inet_png "inet.png"
-#define net_png "net.png"
+#define homepage "res/input.html"
+#define monitor_form "res/monitor.htx"
+#define inject_form "res/inject.htx"
+#define css_file "res/style.css"
+#define js_file "res/javascript.js"
+#define inet_png "res/inet.png"
+#define net_png "res/net.png"
 
 //Other variables
 const static long SERVER_MUTEX_TIMEOUT = 1000;

@@ -97,6 +97,12 @@ void console()
             continue;
         }
 
+        if(!strcmp(cmd.c_str(), "exit"))
+        {
+            std::cout << "Server Shutting Down!" << std::endl;
+            std::terminate();
+        }
+
         std::cout << "Syntax Error: Unknown command: [" << cmd << "]! Type \"help\" to get help!" << std::endl;
     }
 }

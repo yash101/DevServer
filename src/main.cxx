@@ -14,6 +14,7 @@ inline bool start_server()
     }
 }
 
+#ifdef ALLOW_SHUTDOWN_MESSAGE
 inline void shutdown_server()
 {
     try
@@ -31,13 +32,17 @@ inline void shutdown_server()
         std::cout << e.what() << std::endl;
     }
 }
+#endif
 
 void server()
 {
+#ifdef ALLOW_SHUTDOWN_MESSAGE
     //Try to create a connection on localhost:same port and send a polite shutdown signal. This
     //signal will be read by the server and std::terminate() will be caused. This will cause a program
     //crash, but we don't care. That means the program is running properly!
     shutdown_server();
+#endif
+
     //Try to start the server. If this fails, that means there is a problem. We call terminate() and crash
     //the program. This is an actual crash!
     if(!start_server())
@@ -55,6 +60,7 @@ void userprgtm_launcher()
 }
 #endif
 
+#ifdef ENABLE_CONSOLE
 void console()
 {
     std::cout << "Welcome to the DevServer Console! Type \"help\" for assistabce!" << std::endl;
@@ -91,9 +97,16 @@ void console()
             continue;
         }
 
+        if(!strcmp(cmd.c_str(), "exit"))
+        {
+            std::cout << "Server Shutting Down!" << std::endl;
+            std::terminate();
+        }
+
         std::cout << "Syntax Error: Unknown command: [" << cmd << "]! Type \"help\" to get help!" << std::endl;
     }
 }
+#endif
 
 void program()
 {
@@ -110,7 +123,17 @@ void program()
 #endif
     //Finally, we launch the server!
     server();
+#ifdef ENABLE_CONSOLE
     console();
+#else
+#ifdef DETAILED_DEBUG
+    std::cout << "Console Disabled!" << std::endl;
+#endif
+    while(true)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(300));
+    }
+#endif
 }
 
 //Main function. Called upon program launch

@@ -1887,6 +1887,8 @@ dlib/threads.h
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/threads.h
 dlib/iosockstream.h
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/iosockstream.h
+dlib/logger.h
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/logger.h
 devlib.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/devlib.hxx
 globals.hxx

@@ -41,7 +41,7 @@
 //This is extremely useful when you are working on the web interface, which is not
 //compiled in! Just disable the cache and code edits will update instantly.
 //Make sure to disable this once done to decrease latency by a lot!
-#define DISABLE_CACHE
+//#define DISABLE_CACHE
 
 //==============================[DO NOT COMMENT OUT]==============================
 //File Variables! PLEASE ADD TO FILECACHE.DAT FOR MAX PERFORMANCE!

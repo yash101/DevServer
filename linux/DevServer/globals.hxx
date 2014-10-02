@@ -17,4 +17,6 @@ namespace glob
     static std::vector<std::string> preload_db;
     //This holds all the arguments sent to the server before launch
     static std::vector<std::string> arguments;
+    //This is the logger we will use!
+    dlib::logger log("logfile");
 }

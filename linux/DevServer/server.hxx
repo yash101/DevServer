@@ -160,7 +160,7 @@ namespace srv
             //FOR THE NEW WEB INTERFACE
             if(!strcmp(incoming.path.c_str(), "/"))
             {
-                return fs::ramfs::filesystem.read_file_autocache(homepage_new);
+                return fs::ramfs::filesystem.read_file_autocache(homepage);
             }
 
             if(!strcmp(incoming.path.c_str(), "/css"))
@@ -178,13 +178,13 @@ namespace srv
             if(!strcmp(incoming.path.c_str(), "/inet"))
             {
                 outgoing.headers["Content-type"] = "image/png";
-                return fs::ramfs::filesystem.read_file_autocache("inet.png");
+                return fs::ramfs::filesystem.read_file_autocache(inet_png);
             }
 
             if(!strcmp(incoming.path.c_str(), "/server"))
             {
                 outgoing.headers["Content-type"] = "image/png";
-                return fs::ramfs::filesystem.read_file_autocache("net.png");
+                return fs::ramfs::filesystem.read_file_autocache(net_png);
             }
 
             if(!strcmp(incoming.path.c_str(), "/inet_check"))
@@ -194,12 +194,12 @@ namespace srv
 
             if(!strcmp(incoming.path.c_str(), "/inject_frm"))
             {
-                return fs::ramfs::filesystem.read_file_autocache("inject_new.htx");
+                return fs::ramfs::filesystem.read_file_autocache(inject_form);
             }
 
             if(!strcmp(incoming.path.c_str(), "/monitor_frm"))
             {
-                return fs::ramfs::filesystem.read_file_autocache("monitor_new.htx");
+                return fs::ramfs::filesystem.read_file_autocache(monitor_form);
             }
 
             //If nothing is left to do, error handler!

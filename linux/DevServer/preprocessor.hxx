@@ -27,6 +27,7 @@
 #include "dlib/server.h"
 #include "dlib/threads.h"
 #include "dlib/iosockstream.h"
+#include "dlib/logger.h"
 
 #include "devlib.hxx"
 

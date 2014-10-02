@@ -108,6 +108,7 @@ namespace fs
             //This function checks to see if a file exists in the RAMCache. If is does not exist, it will read the
             std::string read_file_autocache(std::string file_location)
             {
+#ifndef DISABLE_CACHE
                 //Check if the file is in the RAMCache
                 if(stat_map(file_location))
                 {
@@ -127,6 +128,9 @@ namespace fs
                     //Return the file from the RAMCache
                     return map[file_location];
                 }
+#else
+                return fs::read_file(file_location);
+#endif
             }
 
             //This function reads a file from the buffer

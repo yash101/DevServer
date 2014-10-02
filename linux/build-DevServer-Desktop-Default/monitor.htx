@@ -34,7 +34,6 @@
 <table style="position: relative; top: 16px; left: 10%; right: 10%; width: 80%; background-color: #2B2B2B;" id="monitor_form_table">
 </table>
 
-
 <div>
 	<style type="text/css">
 	#inject-key, #inject-value

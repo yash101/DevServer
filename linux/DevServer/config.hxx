@@ -34,10 +34,26 @@
 //Whether to show the request information in the terminal window. Requires DETAILED_DEBUG
 #define DEBUG_WEBINF
 
+//Whether to enable the console or not
+#define ENABLE_CONSOLE
+
+//Whether to disable the file cache. This will only affect the autocache function.
+//This is extremely useful when you are working on the web interface, which is not
+//compiled in! Just disable the cache and code edits will update instantly.
+//Make sure to disable this once done to decrease latency by a lot!
+#define DISABLE_CACHE
+
 //==============================[DO NOT COMMENT OUT]==============================
 //File Variables! PLEASE ADD TO FILECACHE.DAT FOR MAX PERFORMANCE!
 #define homepage "input.html"
 #define monitor_form "monitor.htx"
 #define inject_form "inject.htx"
+#define css_file "style.css"
+#define js_file "javascript.js"
+#define inet_png "inet.png"
+#define net_png "net.png"
+
+//Other variables
+const static long SERVER_MUTEX_TIMEOUT = 1000;
 
 //=====================[BEHIND THE SCENE (not really :D)]=========================

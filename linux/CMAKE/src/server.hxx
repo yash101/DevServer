@@ -149,13 +149,25 @@ namespace srv
                 std::terminate();
             }
 
-#ifdef ENABLE_WEB_SHUTDOWN
             if(!strcmp(incoming.path.c_str(), "/shdn"))
             {
                 std::cout << "Server signaled to shut down!" << std::endl;
-                std::terminate();
-            }
+#ifdef ENABLE_WEB_SHUTDOWN
+                //Lambdas are soooo lovely! No need to write a completely new function to do this simple task!
+                std::thread shdn_t(
+                []()
+                {
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
+                    std::terminate();
+                });
+                std::cout << "Shutting down using thread: " << shdn_t.get_id() << std::endl;
+                shdn_t.detach();
+                return "Shutting down server in one second!";
+#else
+                std::cout << "Sorry! Shutdown Prohibited!" << std::endl;
+                return "Sorry! Shutdown Prohibited!";
 #endif
+            }
 
             //FOR THE NEW WEB INTERFACE
             if(!strcmp(incoming.path.c_str(), "/"))

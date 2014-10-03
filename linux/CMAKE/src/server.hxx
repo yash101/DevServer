@@ -238,6 +238,10 @@ namespace srv
             std::cout << "Return Code: " << outgoing.http_return << std::endl;
 #endif
 #endif
+
+#ifdef ENABLE_CORS
+            outgoing.headers["Access-Control-Allow-Origin"] = "*";
+#endif
             //Return the serve data!
             return x + " ";
         }

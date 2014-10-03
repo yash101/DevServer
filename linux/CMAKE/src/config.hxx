@@ -43,6 +43,10 @@
 //Make sure to disable this once done to decrease latency by a lot!
 //#define DISABLE_CACHE
 
+//Whether to allow cross-domain access. Disable this and you won't be able to use the switch
+//server function with this server!
+#define ENABLE_CORS
+
 //==============================[DO NOT COMMENT OUT]==============================
 //File Variables! PLEASE ADD TO FILECACHE.DAT FOR MAX PERFORMANCE!
 #define homepage "res/input.html"

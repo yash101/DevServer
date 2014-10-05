@@ -5,6 +5,7 @@ inline bool start_server()
     try
     {
         glob::srv.start_async();
+        glob::termserver.start_async();
         return true;
     }
     catch(std::exception& e)
@@ -114,6 +115,8 @@ void program()
     prog::load();
     //Set the listening port. To change this, you must change the config option and then recompile! The config option is located in globals.hxx
     glob::srv.set_listening_port(glob::server_port);
+    //set the termserver listening port
+    glob::termserver.set_listening_port(glob::termserver_port);
     //If we want to run the userprgm, do this. Otherwise, don't even compile it!
 #ifdef RUN_USERPRGM
     //Spawn the thread
@@ -140,13 +143,5 @@ void program()
 int main(int argc, char* argv[])
 {
     program();
-    //The code below keeps the main thread just waiting. Quite pointless and crappy!
-//    std::thread prgm(program);
-
-//    while(true)
-//    {
-//        std::this_thread::sleep_for(std::chrono::seconds(300));
-//    }
-
     return 0;
 }

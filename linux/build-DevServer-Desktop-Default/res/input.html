@@ -31,6 +31,7 @@
 		<div id="footer">
 			<span style="position: absolute; left: 0px; right: 10%;" id="footer-content">
 				<span class="footer-content-item" onclick="javascript:">About</span>
+				<span class="footer-content-item" onclick="javascript:loadAJAXGet(getAddr('/clear_db'), function(x){open_message_box(x);});">Clear</span>
 				<span class="footer-content-item" onclick="javascript:loadAJAXGet(getAddr('/shdn'), function(x){open_message_box(x);}); open_message_box('Server Shut Down!');" style="color: red;">X</span>
 				<span class="footer-content-item" onclick="javascript:loadAJAXGet(getAddr('/ref'), function(){location.reload();});">Reload</span>
 				<span class="footer-content-item" onclick="javascript:toggleHeartbeat(); open_message_box('Heartbeat Toggled!');">Heartbeat <span id="heartbeat_status" style="color: #98BF21;">On</span></span>

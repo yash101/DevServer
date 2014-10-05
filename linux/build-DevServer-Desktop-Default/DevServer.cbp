@@ -94,6 +94,8 @@
       </Unit>
       <Unit filename="/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/server_actions.hxx">
       </Unit>
+      <Unit filename="/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/termserv.hxx">
+      </Unit>
       <Unit filename="/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/userprgm.hxx">
       </Unit>
       <Unit filename="/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/CMakeLists.txt">

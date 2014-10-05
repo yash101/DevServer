@@ -1,6 +1,7 @@
 #pragma once
 #include "preprocessor.hxx"
 #include "filesystem.hxx"
+#include "termserv.hxx"
 
 namespace glob
 {
@@ -19,4 +20,8 @@ namespace glob
     static std::vector<std::string> arguments;
     //This is the logger we will use!
     dlib::logger log("logfile");
+    //This is the terminal server (telnet)
+    tsrv::termserv termserver;
+    //This is the terminal server port
+    static unsigned int termserver_port = 2015;
 }

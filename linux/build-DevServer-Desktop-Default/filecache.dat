@@ -4,4 +4,5 @@ res/inject.htx
 res/input.html
 res/monitor.htx
 res/style.css
+res/jsapi.js
 usercfg.cfg

@@ -1845,6 +1845,8 @@ preprocessor.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/preprocessor.hxx
 filesystem.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/filesystem.hxx
+termserv.hxx
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/termserv.hxx
 
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/load.hxx
 preprocessor.hxx
@@ -1889,6 +1891,8 @@ dlib/iosockstream.h
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/iosockstream.h
 dlib/logger.h
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/logger.h
+dlib/sockets.h
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/dlib/sockets.h
 devlib.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/devlib.hxx
 globals.hxx
@@ -1903,6 +1907,8 @@ config.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/config.hxx
 userprgm.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/userprgm.hxx
+termserv.hxx
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/termserv.hxx
 
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/server.hxx
 preprocessor.hxx
@@ -1915,6 +1921,12 @@ load.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/server_actions.hxx
 preprocessor.hxx
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/preprocessor.hxx
+
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/termserv.hxx
+preprocessor.hxx
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/preprocessor.hxx
+globals.hxx
+/media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/globals.hxx
 
 /media/storage/programming/yash101/repos/DevTech/devserver/linux/DevServer/userprgm.hxx
 preprocessor.hxx

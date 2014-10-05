@@ -64,23 +64,6 @@ namespace srv
             #endif
 
             //check for the put request, web form based!
-            if(!strcmp(incoming.path.c_str(), "/put_wf"))
-            {
-                std::string key = incoming.queries["key"];
-                std::string data = incoming.queries["data"];
-                if(key.size() != 0 && data.size() != 0)
-                {
-                    #ifdef DETAILED_DEBUG
-                    std::cout << "Key/Value Pair [" << key << ", " << data << "] injected!" << std::endl;
-                    #endif
-                    database[key] = data;
-                    return "<span style=\"background-color: #98BF21; font-size: 36px;\">Successfully added [" + data + "] : [" + key + "]</span>";
-                }
-                else
-                {
-                    return "<span style=\"background-color: red; font-size: 36px;\">Failed adding value. Form incomplete!</span>";
-                }
-            }
 
             if(!strcmp(incoming.path.c_str(), "/put_wf_new"))
             {
@@ -140,6 +123,26 @@ namespace srv
                 else
                 {
                     return "N";
+                }
+            }
+
+            //Check if the database is to be cleared!
+            if(!strcmp(incoming.path.c_str(), "/clear_db"))
+            {
+                database.clear();
+                return "Success!";
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/del"))
+            {
+                if(incoming.queries["key"].size() != 0)
+                {
+                    database.erase(incoming.queries["key"]);
+                    return "Success!";
+                }
+                else
+                {
+                    return "Delete Failed! Invalid Key!";
                 }
             }
 
@@ -212,6 +215,12 @@ namespace srv
             if(!strcmp(incoming.path.c_str(), "/monitor_frm"))
             {
                 return fs::ramfs::filesystem.read_file_autocache(monitor_form);
+            }
+
+            if(!strcmp(incoming.path.c_str(), "/api.js"))
+            {
+                outgoing.headers["Content-type"] = "text/javascript";
+                return fs::ramfs::filesystem.read_file_autocache(api_file);
             }
 
             //If nothing is left to do, error handler!

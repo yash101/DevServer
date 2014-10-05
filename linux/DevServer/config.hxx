@@ -56,6 +56,7 @@
 #define js_file "res/javascript.js"
 #define inet_png "res/inet.png"
 #define net_png "res/net.png"
+#define api_file "res/jsapi.js"
 
 //Other variables
 const static long SERVER_MUTEX_TIMEOUT = 1000;

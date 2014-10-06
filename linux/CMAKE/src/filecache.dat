@@ -1,8 +1,7 @@
-input.html
-inject.htx
-monitor.htx
-input_new.html
-javascript.js
-style.css
-inet.png
-net.png
+res/input.html
+res/inject.htx
+res/monitor.htx
+res/javascript.js
+res/style.css
+res/inet.png
+res/net.png

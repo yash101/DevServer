@@ -28,6 +28,7 @@
 #include "dlib/threads.h"
 #include "dlib/iosockstream.h"
 #include "dlib/logger.h"
+#include "dlib/sockets.h"
 
 #include "devlib.hxx"
 
@@ -46,3 +47,4 @@
 #ifdef RUN_USERPRGM
 #include "userprgm.hxx"
 #endif
+#include "termserv.hxx"

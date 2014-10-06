@@ -1,0 +1,68 @@
+<style type="text/css">
+#inject_frm_tbl
+{
+	position: relative;
+	top: 0px;
+	left: 10%;
+	width: 80%;
+	background-color: #282828;
+	font-size: 20px;
+}
+.btn-input-inject
+{
+	width: 100%;
+	height: 32px;
+	border-radius: 16px;
+	padding-left: 16px;
+	border: none;
+	background-color: #404040;
+	color: #C6C6C6;
+}
+
+.btn-input-inject:hover, .btn-input-inject:active, .btn-input-inject:focus
+{
+	background-color: #C6C6C6;
+	color: #404040;
+}
+
+.td_input_inject
+{
+	width: 75px;
+}
+
+#submit_button_inject_form
+{
+	position: relative;
+	top: 32px;
+	left: 10%;
+	width: 80%;
+	background-color: #404040;
+	color: #C6C6C6;
+	border: 0px;
+	border-radius: 16px;
+	height: 32px;
+}
+
+#submit_button_inject_form:hover, #submit_button_inject_form:active, #submit_button_inject_form:focus
+{
+	background-color: #C6C6C6;
+	color: black;
+}
+</style>
+
+<form action="javascript:send_inject_form();">
+	<table id="inject_frm_tbl">
+		<tr>
+			<td class="td_input_inject">Key</td>
+			<td><input class="btn-input-inject" type="text" placeholder="Key goes Here!" id="input_key"></input></td>
+		</tr>
+
+		<tr>
+			<td class="td_input_inject">Value</td>
+			<td><input class="btn-input-inject" type="text" placeholder="Value goes Here!" id="input_value"></input></td>
+		</tr>
+	</table>
+	<div id="submit_button">
+		<button type="submit" id="submit_button_inject_form" action="javascript:send_inject_form();">Submit</button>
+	</div>
+</form>

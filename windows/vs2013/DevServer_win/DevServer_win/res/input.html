@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DevServer Web</title>
+		<link rel="stylesheet" type="text/css" href="css">
+		<script type="text/javascript" src="js"></script>
+	</head>
+	<body onload="javascript:boot();">
+
+		<div id="content">
+			<div id="content-title">
+				<div id="content-title-content">
+					<h1>Welcome!</h1>
+				</div>
+			</div>
+			<div id="content-content">
+				<h1>Welcome to the DevServer WebDebugger!</h1>
+				<h2 style="color: #98BF21;">Click on a button above to begin!</h1>
+			</div>
+		</div>
+
+		<img src="/inet" id="inet_connected"></img>
+		<img src="/server" id="server_connected"></img>
+
+		<div id="top_menu">
+			<div class="top_menu_item" onclick="javascript:loadAJAXGet('/inject_frm', function(x){document.getElementById('content-content').innerHTML = x;}); document.getElementById('content-title-content').innerHTML = '<h1>Push</h1>';">Push</div>
+			<div class="top_menu_item" onclick="javascript:loadAJAXGet('/monitor_frm', function(x){document.getElementById('content-content').innerHTML = x;}); document.getElementById('content-title-content').innerHTML = '<h1>Monitor</h1>';">Monitor</div>
+		</div>
+
+		<div id="footer-locker" onclick="javascript:toggle_footer_lock();">Menu: Unlocked</div>
+		<div id="footer">
+			<span style="position: absolute; left: 0px; right: 10%;" id="footer-content">
+				<span class="footer-content-item" onclick="javascript:">About</span>
+				<span class="footer-content-item" onclick="javascript:loadAJAXGet(getAddr('/clear_db'), function(x){open_message_box(x);});">Clear</span>
+				<span class="footer-content-item" onclick="javascript:loadAJAXGet(getAddr('/shdn'), function(x){open_message_box(x);}); open_message_box('Server Shut Down!');" style="color: red;">X</span>
+				<span class="footer-content-item" onclick="javascript:loadAJAXGet(getAddr('/ref'), function(){location.reload();});">Reload</span>
+				<span class="footer-content-item" onclick="javascript:toggleHeartbeat(); open_message_box('Heartbeat Toggled!');">Heartbeat <span id="heartbeat_status" style="color: #98BF21;">On</span></span>
+				<span class="footer-content-item"><input type="text" placeholder="Server Address" id="server_address" style="width: 90%; height: 80%%; border: 1px solid #98BF21; border-radius: 10px; padding-left: 10px;"></input></span>
+			</span>
+			<span id="footer-handle" style="position: absolute; left: 90%; right: 0px; width: 10%; color: black;">Menu >></span>
+		</div>
+
+		<div id="msg_box"><div id="msg_box_txt">Nothing Here Yet!</div></div>
+	</body>
+</html>
